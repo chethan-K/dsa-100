@@ -133,4 +133,14 @@ public class SinglyLinkedList<T>{
             currentNode.nextNode = newNode;
         }
     }
+
+    public int length(){
+        int count = 0;
+        Node temp = headNode;
+        while (temp != null){
+            temp = temp.nextNode;
+            count ++;
+        }
+        return count;
+    }
 }

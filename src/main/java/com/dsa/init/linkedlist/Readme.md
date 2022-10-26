@@ -18,6 +18,22 @@ Linear data structure consists of node
 
 > Insert at tail/Delete at tail --> O(n)
 
+```java
+//Node inner class for DLL
+public class Node<T> {
+    public T data; //Stores data
+    public Node nextNode; //Stores pointer to next element
+}
+```
+```java
+public class SinglyLinkedList<T> {
+    //member variables
+    public Node headNode;
+    public int size;
+}
+```
+
+
 ### Doubly linked list
 >- head --> **node1**(null, data, node1Pointer) ---> **node2**(node1Pointer, data, node2Pointer)
 - Insert and delete at the head as well as tail are O(1) operations
@@ -47,3 +63,45 @@ Linear data structure consists of node
 - Linked list data insert/delete at head is O(1) whereas in array it is O(n) - as the array requires to be shifted
 - For singly linked list insert at head/tail requires O(n) as it has to iterate over all.
 
+
+## Doubly linked list DLL
+**Problem with SLL** 
+- Traversing is possible only from the headNode - uni-directional
+- While adding/removing elements from the list, we need to keep track of the previous node as well
+
+> (previousNode, data, nextNode)->(previousNode, data, nextNode)->(previousNode, data, nextNode)
+
+
+```java
+//Node inner class for DLL
+public class Node<T> {
+    public T data; //Stores data
+    public Node nextNode; //Stores pointer to next element
+    public Node prevNode; //Stores pointer to previous element
+}
+```
+```java
+public class DoublyLinkedList<T> {
+    //member variables
+    public Node headNode;
+    public Node tailNode;
+    public int size;
+}
+```
+
+**Insert at head**
+- newNode.nextNode = this.headNode
+- headNode.prevNode = newNode
+- headNode = newNode
+
+**Insert at End**
+- We simply insert the new node as the nextNode of the tailNode and then update the tailNode to point to the new node, after insertion
+- newNode.prevNode = tailNode
+- tailNode.nextNode = newNode
+- tailNode = newNode
+
+### Reversing the SLL
+- next = current.next (Store the current node’s nextNode in next)
+- current.next = prev (Set current node’s nextNode to previous (reversal))
+- prev = current (Make the current node the new previous so that it can be used for the next iteration)
+- current = next (Use next to move on to the next node)

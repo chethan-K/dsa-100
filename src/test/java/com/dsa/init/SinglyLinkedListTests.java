@@ -1,5 +1,6 @@
 package com.dsa.init;
 
+import com.dsa.init.linkedlist.LinkedListUtility;
 import com.dsa.init.linkedlist.SinglyLinkedList;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -7,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 @Slf4j
-class LinkedListTests {
+class SinglyLinkedListTests {
 
 	@Test
 	void testInsertAtHead() {
@@ -30,7 +31,6 @@ class LinkedListTests {
 		list.insertAtEnd("data5");
 		list.insertAtHead("data0");
 		// data1 -> data2 -> data3 -> data4
-
 		printDataInLinkedList(list);
 	}
 
@@ -55,12 +55,11 @@ class LinkedListTests {
 		list.insertAtEnd("data3");
 		list.insertAtEnd("data4");
 		list.insertAtEnd("data5");
-		log.info("List before delete : ");
+		log.info("List before delete : {}", list.length());
 		printDataInLinkedList(list);
-		log.info("<---------->");
 		String val = "data3";
 		list.deleteByValue(val);
-		log.info("List after deleting value : {}", val);
+		log.info("List after deleting value : {}, {}", val, list.length());
 		printDataInLinkedList(list);
 	}
 
@@ -79,6 +78,23 @@ class LinkedListTests {
 		String insertAfter = "data3";
 		list.insertAfter(dataToInsert, insertAfter);
 		log.info("List after inserting {} after {}", dataToInsert, insertAfter);
+		printDataInLinkedList(list);
+	}
+
+	@Test
+	void reverseList() {
+		SinglyLinkedList<String> list = new SinglyLinkedList<>();
+		list.insertAtEnd("data1");
+		list.insertAtEnd("data2");
+		list.insertAtEnd("data3");
+		list.insertAtEnd("data5");
+		list.insertAtEnd("data6");
+		log.info("List before reverse : ");
+		printDataInLinkedList(list);
+		log.info("<---------->");
+		LinkedListUtility<String> llUtility = new LinkedListUtility<>();
+		llUtility.reverseList(list);
+		log.info("List after reverse : ");
 		printDataInLinkedList(list);
 	}
 
