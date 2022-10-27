@@ -29,15 +29,22 @@ public class DoublyLinkedList<T> {
     }
 
     public void insertAtHead(T data) {
+
+        // Create new node
         Node newNode = new Node();
         newNode.data = data;
+
+        // set headNode as nextNode
         newNode.nextNode = headNode;
         newNode.prevNode = null;
+
         if(!isEmpty()){
+            // currentHead node's prevNode is now the newly added node
             headNode.prevNode = newNode;
         } else {
             tailNode = newNode;
         }
+
         this.headNode = newNode;
         size++;
     }
@@ -52,6 +59,8 @@ public class DoublyLinkedList<T> {
         // Make new node
         Node newNode = new Node();
         newNode.data = data;
+
+        //
         newNode.prevNode = tailNode;
         newNode.nextNode = null;
 
